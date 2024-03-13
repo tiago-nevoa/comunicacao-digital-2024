@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int fibonnaci( int n ) {
+int fibonacci(int n) {
 	if (n <= 2) {
 		return 1;
 	}
@@ -17,8 +17,8 @@ int fibonnaci( int n ) {
 	return result;
 }
 
-void print_fibonnaci( int n ) {
-	for (int i = 1; i < n; i++) {
-		printf("fib: %d = %d\n", i, fibonnaci(i));
+void print_fibonacci( int n ) {
+	for (int i = 1; i <= n; i++) {
+		printf("fib: %d = %d\n", i, fibonacci(i));
 	}
 }
