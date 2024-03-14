@@ -3,9 +3,9 @@
 
 void file_histogram(char *file_name)
 {
-	FILE *fp;
-	fp = fopen(file_name, "r");
-	if (fp == NULL)
+	FILE *f_in;
+	f_in = fopen(file_name, "r");
+	if (f_in == NULL)
 	{
 		printf("Error opening file\n");
 		exit(1);
@@ -15,7 +15,7 @@ void file_histogram(char *file_name)
 
 	// Lê o arquivo e atualiza o histograma
 	int c;
-	while ((c = fgetc(fp)) != EOF)
+	while ((c = fgetc(f_in)) != EOF)
 	{
 		histogram[c]++;
 	}

@@ -11,7 +11,7 @@ int main()
 	int n = 42;
 	char my_input_file[] = "test-in.txt";
 	char my_output_file[] = "test-out.txt";
-	char symbol = 'e';
+	char symbol = '\n';
 
 	printf("\n ------------------ \n");
 	printf("\ncount_bits(%d):\n", n);

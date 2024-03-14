@@ -5,6 +5,8 @@ void reverse_file(char *input_file_name, char *output_file_name)
 {
 	FILE *fp_in;
 	FILE *fp_out;
+	char *buffer;
+	long file_size;
 
 	fp_in = fopen(input_file_name, "r");
 	if (fp_in == NULL)
@@ -21,11 +23,11 @@ void reverse_file(char *input_file_name, char *output_file_name)
 		exit(1);
 	}
 
-	fseek(fp_in, 0, SEEK_END);	   // Move para o final do arquivo de entrada
-	long file_size = ftell(fp_in); // Obtem o tamanho do arquivo
-	fseek(fp_in, 0, SEEK_SET);	   // Move de volta para o início do arquivo de entrada
+	fseek(fp_in, 0, SEEK_END); // Move para o final do arquivo de entrada
+	file_size = ftell(fp_in);  // Obtem o tamanho do arquivo
+	fseek(fp_in, 0, SEEK_SET); // Move de volta para o início do arquivo de entrada
 
-	char *buffer = (char *)malloc(file_size * sizeof(char)); // Aloca memória para armazenar o conteúdo do arquivo
+	buffer = (char *)malloc(file_size * sizeof(char)); // Aloca memória para armazenar o conteúdo do arquivo
 
 	if (buffer == NULL)
 	{
@@ -34,6 +36,8 @@ void reverse_file(char *input_file_name, char *output_file_name)
 		fclose(fp_out);
 		exit(1);
 	}
+
+	fread(buffer, sizeof(char), file_size, fp_in);
 
 	// Write the content of the buffer to the output file in reverse order
 	for (long i = file_size - 1; i >= 0; i--)
