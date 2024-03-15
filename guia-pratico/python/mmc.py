@@ -1,6 +1,9 @@
 # Exercise C
 def mdc(a, b):
 
+    if a < 0 or b < 0:
+        raise ValueError('None of the numbers can be negative')
+
     # Euclidean Algorithm
     result = a % b
 
@@ -14,10 +17,18 @@ def mdc(a, b):
         b = result
         result = temp
 
+    if b < 0:
+        b = abs(b)
+
     return b
 
 def mmc(a, b):
-    return a * b / mdc(a, b)
 
-print(mdc(12, 9))
-print(mmc(11, 900))
+    # Inverts the signal if negative
+    a = abs(a)
+    b = abs(b)
+
+    if a == 0 or b == 0:
+        raise ValueError('None of the numbers can be zero')
+
+    return a * b // mdc(a, b)

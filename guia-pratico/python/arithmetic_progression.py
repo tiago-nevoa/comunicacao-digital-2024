@@ -1,11 +1,19 @@
 # Exercise A
 # Term = u + (n-1) * r
+# u - first term
+# r - common difference
 def arithmetic_progression(N, u, r):
-    for i in range(N):
-        if( i == 0 ):
+
+    if N <= 0:
+        raise ValueError('N has to be a positive number')
+
+    progression = []
+
+    for i in range(1, N+1):
+        if( i == 1 ):
             term = u
         else:
-            term = u+(i)*r
-        print(term)
-
-arithmetic_progression(10, 1, 2)
+            term = u + (i-1) * r
+        progression.append(term)
+        
+    return progression

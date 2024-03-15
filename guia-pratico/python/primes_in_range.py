@@ -10,9 +10,13 @@ def is_prime(a):
     return True
 
 def primes_in_range(left, right):
-    for i in range(left, right + 1):
-        if(is_prime(i)):
-            print(i)
 
-print(is_prime(6))
-print(primes_in_range(0, 50))
+    if left > right:
+        raise ValueError('The right number has to be greater or equal than the left one')
+
+    prime_list = []
+
+    for i in range(left, right + 1):
+        if is_prime(i):
+            prime_list.append(i)
+    return prime_list
