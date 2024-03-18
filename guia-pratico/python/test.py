@@ -3,7 +3,7 @@ from arithmetic_progression import arithmetic_progression
 from fatorial import fatorial
 from mmc import mmc
 from primes_in_range import primes_in_range
-from symbol_frequency import symb_freq_filter
+from symbol_frequency import symb_freq_filter, symb_frequencies
 
 
 class TestFunctions(unittest.TestCase):
@@ -49,6 +49,13 @@ class TestFunctions(unittest.TestCase):
             primes_in_range(19, 15)
             primes_in_range(0, -5)
             primes_in_range(-3, -10)
+
+    def test_symb_frequencies(self):
+        self.assertEqual(symb_frequencies("AABB"), {'A': 2, 'B': 2})
+        self.assertEqual(symb_frequencies("AAABd 5"), {' ': 1, '5': 1, 'A': 3, 'B': 1, 'd': 1})
+
+        with self.assertRaises(ValueError):
+            symb_frequencies(21)
         
     def test_symb_freq_filter(self):
         self.assertEqual(symb_freq_filter("guia-pratico/python/something.txt", 1), {'A': 12, 'B': 8, 'C': 4, 'F': 1, 'G': 4})
