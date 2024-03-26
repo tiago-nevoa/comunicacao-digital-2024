@@ -1,11 +1,10 @@
 # CD 2024
-Color Images/
-Grayscale Images/
-TestFilesCD/
+TestFiles/
 *.pdf
 
-# Python Cache
+# Python Temporary
 __pycache__/
+tempCodeRunnerFile.py
 
 # Logs
 logs
