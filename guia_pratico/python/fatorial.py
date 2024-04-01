@@ -1,6 +1,9 @@
 # Exercise B
 def fatorial(a):
 
+    if not isinstance(a, (int, float)):
+        raise ValueError('Input must be an integer or float')
+
     if a < 0:
         raise ValueError('Not able to get factorial of a negative number')
 
