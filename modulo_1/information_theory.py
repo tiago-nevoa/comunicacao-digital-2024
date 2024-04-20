@@ -3,19 +3,22 @@ import math
 # Import type 1
 import os, sys
 sys.path.insert(1, "/".join(os.path.realpath(__file__).split("/")[0:-2]))
-from guia_pratico.python.symbol_frequency import symb_frequencies, prob_symb_freq
+from guia_pratico.python.symbol_frequency import get_symbol_probabilities
 
 # Import type 2
 #from ..guia_pratico.python.symbol_frequency import symb_frequencies, prob_symb_freq
 
 
-def informational_value(symbol, probabilities):
+def informational_value(symbol: str, probabilities: dict) -> float:
+
+    if symbol not in probabilities:
+        raise ValueError(f"Symbol '{symbol}' not found in the list")
 
     probability = probabilities[symbol]
 
     return -math.log2(probability)
 
-def entropy(probabilities):
+def entropy(probabilities: dict) -> float:
 
     entropy = 0
 
@@ -24,30 +27,21 @@ def entropy(probabilities):
     return entropy
 
 
-def get_probabilitites(file):
-    with open(file, 'r', errors='ignore') as f:
-        file_content = f.read()
-        total_chars = len(file_content)
-        
-    frequencies = symb_frequencies(file_content)
-    probabilities = prob_symb_freq(frequencies, total_chars)
+def main():
 
-    return probabilities
+    files = ["guia_pratico/TestFiles/something.txt",
+            "modulo_1/TestFiles/CD/a.txt",
+            "modulo_1/TestFiles/CD/alice29.txt",
+            "modulo_1/TestFiles/CD/arrays.kt",
+            "modulo_1/TestFiles/CD/barries.jpg"]
+    
+    for file in files:
+        with open(file, 'r', errors='ignore') as f:
+            file_content = f.read()
+            probabilities = get_symbol_probabilities(file_content)
+            file_entropy = entropy(probabilities)
+            print(file_entropy)
+    
 
-
-file1 = "guia_pratico/TestFiles/something.txt"
-file2 = "modulo_1/TestFiles/CD/a.txt"
-file3 = "modulo_1/TestFiles/CD/alice29.txt"
-file4 = "modulo_1/TestFiles/CD/arrays.kt"
-file5 = "modulo_1/TestFiles/CD/barries.jpg"
-
-probabilities = get_probabilitites(file1)
-
-print(get_probabilitites(file5))
-
-
-print(entropy(probabilities))
-print(entropy(get_probabilitites(file2)))
-print(entropy(get_probabilitites(file3)))
-print(entropy(get_probabilitites(file4)))
-print(entropy(get_probabilitites(file5)))
+if __name__ == '__main__':
+    main()

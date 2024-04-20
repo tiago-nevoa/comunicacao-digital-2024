@@ -1,6 +1,9 @@
 # Exercise C
 def mdc(a, b):
 
+    if not any(isinstance(x, (int, float)) for x in (a, b)):
+        raise ValueError('Input must be an integer or float')
+
     if a < 0 or b < 0:
         raise ValueError('None of the numbers can be negative')
 
@@ -23,6 +26,9 @@ def mdc(a, b):
     return b
 
 def mmc(a, b):
+
+    if not any(isinstance(x, (int, float)) for x in (a, b)):
+        raise ValueError('Input must be an integer or float')
 
     # Inverts the signal if negative
     a = abs(a)
