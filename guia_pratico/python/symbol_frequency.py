@@ -61,7 +61,3 @@ def most_probable_symbols(probabilities: dict, num_symbols: int) -> list:
 # Sort by most probable
 def sort_probabilities(probabilities: dict) -> dict:
     return dict(sorted(probabilities.items(), key=lambda item: item[1], reverse=True))
-
-#def get_symbol_probabilities_OLD(frequencies: dict, total_chars: int, as_percentage = False) -> dict:
-#    percantage = 100 if as_percentage else 1
-#    return {key: value / total_chars * percantage for key, value in frequencies.items()}
