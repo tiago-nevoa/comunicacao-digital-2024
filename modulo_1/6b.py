@@ -13,8 +13,8 @@ def get_errors(original: str, masked: str) -> int:
 def main():
 
     lengths = [1024, 10240, 102400, 1024000, 10240000]
-    
-    p = 0.1
+     
+    p = 0.60
 
     for length in lengths:
         sequence = ''

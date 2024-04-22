@@ -3,9 +3,9 @@ binary_symetric_channel = __import__('6a').binary_symetric_channel
 
 def main():
 
-    p = 0.0001
+    p = 0.02
 
-    file = "modulo_1/TestFiles/CD/a.txt"
+    file = "modulo_1/TestFiles/CD/cd.txt"
 
     with open(file, 'r', errors='ignore') as f:
         file_content = f.read()

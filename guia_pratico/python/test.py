@@ -86,12 +86,12 @@ class TestFunctions(unittest.TestCase):
             get_symbol_probabilities(11)
             get_symbol_probabilities(False)
 
-    def test_most_probable_symbols(self):
-        self.assertEqual(most_probable_symbols({'A': 0.5, 'B': 0.25, 'C': 0.25}, 1), ['A'])
-        self.assertEqual(most_probable_symbols({'B': 0.25, 'A': 0.25}, 1), ['B'])
-        self.assertEqual(most_probable_symbols({'A': 0.25, 'B': 0.75}, 1), ['B'])
-        self.assertEqual(most_probable_symbols({'A': 0.25, 'B': 0.75}, 2), ['B', 'A'])
-        self.assertEqual(most_probable_symbols({'O': 0.12, 'h': 0.31, 'b': 0.04, 'Q': 0.53}, 2), ['Q', 'h'])
+    def test_get_most_frequent_symbols(self):
+        self.assertEqual(get_most_frequent_symbols({'A': 0.5, 'B': 0.25, 'C': 0.25}, 1), ['A'])
+        self.assertEqual(get_most_frequent_symbols({'B': 0.25, 'A': 0.25}, 1), ['B'])
+        self.assertEqual(get_most_frequent_symbols({'A': 0.25, 'B': 0.75}, 1), ['B'])
+        self.assertEqual(get_most_frequent_symbols({'A': 0.25, 'B': 0.75}, 2), ['B', 'A'])
+        self.assertEqual(get_most_frequent_symbols({'O': 0.12, 'h': 0.31, 'b': 0.04, 'Q': 0.53}, 2), ['Q', 'h'])
 
     def test_sort_probabilities(self):
         self.assertEqual(sort_probabilities({'O': 0.12, 'h': 0.31, 'b': 0.04, 'Q': 0.53}), {'Q': 0.53, 'h': 0.31, 'O': 0.12, 'b': 0.04})

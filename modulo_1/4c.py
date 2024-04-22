@@ -1,4 +1,5 @@
 from symbol_generator import *
+from difference_ratio import *
 password_generator = __import__('4b').third_exercise
 
 import os, sys
@@ -14,6 +15,7 @@ def get_file_size(filepath) -> float:
 def main():
 
     filepath = "modulo_1/TestFiles/Generated/passwords.txt"
+
     count = 1000
 
     passwords = password_generator(count)
@@ -27,7 +29,7 @@ def main():
 
     original_size = get_file_size(filepath)
     compressed_size = get_file_size(compressed_filepath)
-    compression_ratio = (original_size - compressed_size) / original_size * 100
+    compression_ratio = difference_ratio(original_size, compressed_size)
 
     print(f"{original_size} KB -> {compressed_size} KB")
     print(f"Compression Ratio: {compression_ratio}%")

@@ -21,8 +21,10 @@ def get_symbol_frequencies(content: str) -> dict:
 
     frequencies = {}
 
-    for char in content:
-        frequencies[char] = frequencies.get(char, 0) + 1
+    for line in content.splitlines():
+        for i in range(len(line)):
+            char = line[i]
+            frequencies[char] = frequencies.get(char, 0) + 1
     
     return frequencies
 
@@ -53,8 +55,8 @@ def get_symbol_probabilities(content: str, as_percentage = False) -> dict:
 
     return probabilities
 
-# Get the most probable symbols
-def most_probable_symbols(probabilities: dict, num_symbols: int) -> list:
+# Get the most frequent symbols
+def get_most_frequent_symbols(probabilities: dict, num_symbols: int) -> list:
   sorted_probabilities = sort_probabilities(probabilities)
   return list(sorted_probabilities.keys())[:num_symbols]
 
