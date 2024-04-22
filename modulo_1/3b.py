@@ -3,37 +3,40 @@ sys.path.insert(1, "/".join(os.path.realpath(__file__).split("/")[0:-2]))
 from guia_pratico.python.symbol_frequency import *
 
 
-def firstExercise(content):
-
-    if not isinstance(content, str):
-        raise ValueError('Parameter has to be a string')
+def first_exercise(content: str) -> list:
     
-    probabilities = get_symbol_probabilities(content, True)
+    probabilities = get_symbol_probabilities(content, as_percentage = True)
+    most_frequent_symbols = get_most_frequent_symbols(probabilities, 5)
+    return most_frequent_symbols
 
-    most_frequent_chars = most_probable_symbols(probabilities, 5)
+def second_exercise(content: str) -> list:
 
-    return most_frequent_chars
+    pairs = get_pair_frequencies(content)
+    probabilities = get_pair_probabilities(pairs)
+    most_frequent_pairs = get_most_frequent_symbols(probabilities, 5)
 
-def secondExercise(content):
+    return most_frequent_pairs
 
-    if not isinstance(content, str):
-        raise ValueError('Parameter has to be a string')
-    
+
+def get_pair_frequencies(content: str) -> dict:
     pairs = {}
 
     for line in content.splitlines():
         for i in range(len(line) - 1):
-            pair = line[i] + line[i + 1]
+
+            char = line[i]
+            next_char = line[i + 1]
+
+            pair = char + next_char
             pairs[pair] = pairs.get(pair, 0) + 1
 
-    # Calcular a percentagem de frequência
+    return pairs
+
+def get_pair_probabilities(pairs: dict) -> dict:
     total_pairs = sum(pairs.values())
     for pair, frequency in pairs.items():
-        pairs[pair] = round(frequency / total_pairs * 100, 2)
-
-    most_frequent_pairs = most_probable_symbols(pairs, 5)
-
-    return most_frequent_pairs
+        pairs[pair] = frequency / total_pairs * 100
+    return pairs
 
 
 def main():
@@ -44,11 +47,15 @@ def main():
     for file in files:
         with open(file, 'r', errors='ignore') as f:
             file_content = f.read()
-            charProbabilities = firstExercise(file_content)
-            #print(charProbabilities)
-            pairProbabilities = secondExercise(file_content)
-            print(pairProbabilities)
-            #print(entropy(probabilities))
+            file_name = os.path.basename(f.name)
+
+            char_probabilities = first_exercise(file_content)
+            pair_probabilities = second_exercise(file_content)
+
+            print(f"{file_name}:")
+            print(f"- Most frequent symbols: {char_probabilities}")
+            print(f"- Most frequent pairs of symbols: {pair_probabilities}")
+
     
 
 if __name__ == '__main__':
