@@ -22,7 +22,7 @@ def main():
             image = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
             hist, _ = np.histogram(image.ravel(), bins = 256, range = (0, 256))
             probabilities = hist / (image.size)
-            probabilities[probabilities == 0] = 1e-9    # Handle log of zero
+            probabilities[probabilities == 0] = 1e-9    # Handle logs of zero
             file_entropy = -np.sum(probabilities * np.log2(probabilities))
 
         # Text
